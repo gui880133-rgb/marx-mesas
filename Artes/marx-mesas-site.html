@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f1e9">
+  <meta name="description" content="Toalhas de mesa com estampas inspiradas na arte modernista e na natureza brasileira.">
+  <title>Marx Mesas | Arte e Natureza à Mesa</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+    :root {
+      --green: #234b35;
+      --green-dark: #173525;
+      --terracotta: #b95f43;
+      --sand: #f4f1e9;
+      --paper: #fffdf8;
+      --ink: #282b26;
+      --muted: #74766e;
+      --line: rgba(35, 75, 53, .17);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      background: var(--sand);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topline {
+      background: var(--green-dark);
+      color: #f9f5eb;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: .72rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 253, 248, .95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-container {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      text-decoration: none;
+      color: var(--green);
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -.06em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .logo span { color: var(--terracotta); }
+    .logo small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .57rem;
+      font-weight: 500;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+    .menu { display: flex; align-items: center; gap: clamp(16px, 3vw, 38px); }
+    .menu a {
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+    .menu a:hover { color: var(--terracotta); }
+    .menu .nav-cta {
+      border: 1px solid var(--green);
+      padding: 10px 16px;
+      border-radius: 2px;
+    }
+    .menu .nav-cta:hover { background: var(--green); color: white; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 88% 18%, rgba(185,95,67,.18), transparent 31%),
+        radial-gradient(ellipse at 7% 100%, rgba(35,75,53,.12), transparent 36%),
+        var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(35,75,53,.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::before { width: 390px; height: 390px; right: -160px; top: -210px; }
+    .hero::after { width: 280px; height: 280px; right: -105px; top: -155px; }
+    .hero-inner {
+      min-height: 485px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 50px;
+      padding-block: 72px;
+      position: relative;
+    }
+    .eyebrow {
+      color: var(--terracotta);
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 19px;
+    }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; }
+    h1 { max-width: 650px; font-size: clamp(2.8rem, 5.7vw, 5rem); letter-spacing: -.045em; color: var(--green-dark); }
+    .hero-copy {
+      max-width: 540px;
+      color: #5f625a;
+      margin-top: 22px;
+      font-size: 1.05rem;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 21px;
+      border: 1px solid var(--green);
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      font: 700 .83rem var(--sans);
+      letter-spacing: .025em;
+      transition: transform .2s, background .2s, color .2s;
+      cursor: pointer;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--green-dark); }
+    .button-outline { color: var(--green); background: transparent; }
+    .button-outline:hover { color: white; }
+    .hero-art {
+      position: relative;
+      min-height: 315px;
+      display: grid;
+      place-items: center;
+    }
+    .art-circle {
+      width: min(330px, 90%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 32% 25%, #dca27c 0 10%, transparent 10.5%),
+        radial-gradient(ellipse at 70% 70%, #b95f43 0 17%, transparent 17.5%),
+        radial-gradient(ellipse at 58% 30%, #82916b 0 19%, transparent 19.5%),
+        radial-gradient(ellipse at 35% 75%, #234b35 0 20%, transparent 20.5%),
+        #e5ddca;
+      border: 1px solid rgba(35,75,53,.16);
+      box-shadow: 18px 18px 0 rgba(35,75,53,.07);
+      transform: rotate(-7deg);
+    }
+    .art-note {
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 14px 18px;
+      font-family: var(--serif);
+      color: var(--green);
+      box-shadow: 0 8px 24px rgba(30,40,30,.06);
+    }
+
+    .intro-strip { border-bottom: 1px solid var(--line); background: #eae7dc; }
+    .strip-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding-block: 20px;
+      gap: 20px;
+    }
+    .strip-item { text-align: center; font-size: .79rem; color: #555b50; }
+    .strip-item strong { color: var(--green); display: block; font-size: .9rem; margin-bottom: 2px; }
+
+    .section { padding-block: 88px; }
+    .section-heading { text-align: center; max-width: 650px; margin: 0 auto 42px; }
+    .section-heading .eyebrow { margin-bottom: 12px; }
+    .section-heading h2 { color: var(--green-dark); font-size: clamp(2rem, 4vw, 3.15rem); letter-spacing: -.035em; }
+    .section-heading p { color: var(--muted); margin-top: 14px; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
+    .product-card {
+      min-width: 0;
+      background: var(--paper);
+      border: 1px solid rgba(35,75,53,.11);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(32,48,34,.09); }
+    .product-image {
+      width: 100%;
+      aspect-ratio: 896 / 1200;
+      background: #e8e2d5;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform .45s ease;
+    }
+    .product-card:hover .product-image img { transform: scale(1.025); }
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 10px;
+      background: rgba(255,253,248,.92);
+      color: var(--green);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .product-info { padding: 23px 22px 24px; }
+    .product-number { color: var(--terracotta); font-size: .7rem; letter-spacing: .16em; font-weight: 700; }
+    .product-info h3 { font-size: 1.45rem; margin-top: 8px; color: var(--green-dark); }
+    .product-info p { color: var(--muted); font-size: .88rem; margin-top: 11px; min-height: 70px; }
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 17px;
+      border-top: 1px solid var(--line);
+    }
+    .price { color: var(--green); font-size: 1.2rem; font-weight: 700; white-space: nowrap; }
+    .interest-button {
+      border: 0;
+      background: transparent;
+      color: var(--terracotta);
+      font: 700 .78rem var(--sans);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .interest-button:hover { color: var(--green); }
+
+    .about { background: var(--green-dark); color: #f8f4e9; position: relative; overflow: hidden; }
+    .about::after {
+      content: "";
+      position: absolute;
+      width: 400px; height: 400px;
+      right: -180px; bottom: -250px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      box-shadow: 0 0 0 35px rgba(255,255,255,.025), 0 0 0 70px rgba(255,255,255,.025);
+    }
+    .about-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; position: relative; z-index: 1; }
+    .about-mark {
+      min-height: 275px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.25);
+      color: #e7c6a3;
+      font: 600 clamp(2.5rem, 5vw, 4.4rem) var(--serif);
+      letter-spacing: -.06em;
+      text-align: center;
+      padding: 24px;
+    }
+    .about .eyebrow { color: #e5ad8d; }
+    .about h2 { font-size: clamp(2rem, 4vw, 3.2rem); max-width: 560px; }
+    .about p { color: rgba(255,253,248,.76); margin-top: 18px; max-width: 620px; }
+    .about .button { margin-top: 25px; background: transparent; border-color: #e7c6a3; color: #f8f4e9; }
+    .about .button:hover { background: #e7c6a3; color: var(--green-dark); }
+
+    .closing { text-align: center; padding-block: 72px; }
+    .closing h2 { color: var(--green-dark); font-size: clamp(2rem, 4vw, 3rem); }
+    .closing p { color: var(--muted); margin: 13px auto 24px; max-width: 550px; }
+    footer { background: #14291d; color: #f8f4e9; padding: 30px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-brand { font-size: 1.15rem; font-weight: 700; letter-spacing: -.04em; }
+    .footer-brand span { color: #d58a6b; }
+    footer p, footer small { color: rgba(255,253,248,.65); font-size: .76rem; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { color: #f8f4e9; font-size: .78rem; text-decoration: none; }
+    .footer-links a:hover { color: #e5ad8d; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 24px; z-index: 30;
+      transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+      width: min(440px, calc(100% - 32px));
+      padding: 15px 18px; background: var(--green-dark); color: white;
+      box-shadow: 0 10px 35px rgba(0,0,0,.2); font-size: .9rem;
+      transition: opacity .2s, transform .2s;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 850px) {
+      .hero-inner { grid-template-columns: 1fr .7fr; gap: 25px; }
+      .product-grid { gap: 16px; }
+      .product-info { padding: 18px 16px; }
+      .product-info h3 { font-size: 1.25rem; }
+      .product-bottom { align-items: flex-start; flex-direction: column; }
+      .about-inner { gap: 35px; }
+    }
+    @media (max-width: 650px) {
+      .container { width: min(100% - 32px, 520px); }
+      .topline { font-size: .62rem; letter-spacing: .08em; }
+      .nav-container { min-height: 72px; flex-direction: column; justify-content: center; gap: 14px; padding-block: 14px; }
+      .logo { font-size: 1.3rem; }
+      .logo small { display: none; }
+      .menu { width: 100%; justify-content: center; gap: 22px; }
+      .menu a { font-size: .78rem; }
+      .menu .nav-cta { padding: 6px 10px; }
+      .hero-inner { min-height: 0; grid-template-columns: 1fr; padding-block: 58px 45px; gap: 20px; }
+      h1 { font-size: clamp(2.7rem, 12vw, 4rem); }
+      .hero-copy { font-size: .96rem; }
+      .hero-art { min-height: 230px; }
+      .art-circle { width: 220px; }
+      .art-note { right: 5%; bottom: 0; font-size: .85rem; }
+      .strip-inner { grid-template-columns: 1fr; gap: 13px; padding-block: 20px; }
+      .section { padding-block: 62px; }
+      .section-heading { margin-bottom: 30px; }
+      .product-grid { grid-template-columns: 1fr; gap: 22px; max-width: 420px; margin-inline: auto; }
+      .product-info p { min-height: 0; }
+      .product-bottom { flex-direction: row; align-items: center; }
+      .about-inner { grid-template-columns: 1fr; gap: 32px; }
+      .about-mark { min-height: 180px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">Design brasileiro · Natureza · Arte à mesa</div>
+
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="#home" aria-label="Marx Mesas - início">Marx <span>Mesas</span><small>Arte para o cotidiano</small></a>
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#home">Início</a>
+        <a href="#colecao">Coleção</a>
+        <a href="#sobre">Nossa ideia</a>
+        <a class="nav-cta" href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <p class="eyebrow">Coleção botânica modernista</p>
+          <h1>Arte e natureza à mesa.</h1>
+          <p class="hero-copy">Estampas marcantes, formas orgânicas e cores inspiradas na riqueza da paisagem brasileira. Um toque de arte para transformar os encontros de todos os dias.</p>
+          <div class="hero-actions">
+            <a class="button" href="#colecao">Explorar coleção <span aria-hidden="true">&nbsp;↗</span></a>
+            <a class="button button-outline" href="#sobre">Conheça a proposta</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-circle"></div>
+          <div class="art-note">Formas da natureza,<br>feitas para conviver.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="intro-strip">
+      <div class="container strip-inner">
+        <div class="strip-item"><strong>Estampas autorais em destaque</strong>Personalidade para compor a mesa</div>
+        <div class="strip-item"><strong>Inspiração brasileira</strong>Cores, curvas e formas naturais</div>
+        <div class="strip-item"><strong>Design que acolhe</strong>Peças para momentos especiais</div>
+      </div>
+    </div>
+
+    <section class="section" id="colecao">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Escolha sua estampa</p>
+          <h2>Peças que contam histórias</h2>
+          <p>Conheça a coleção e encontre a estampa que combina com o seu jeito de receber.</p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-image">
+              <img src="./IMG/imagem (1).jpg" alt="Toalha de mesa Copacabana com estampa inspirada nas curvas do calçadão" width="896" height="1200" loading="lazy">
+              <span class="product-tag">Coleção 01</span>
+            </div>
+            <div class="product-info">
+              <span class="product-number">01 / COPACABANA</span>
+              <h3>Toalha Copacabana</h3>
+              <p>Inspirada nos traçados fluidos e contrastantes do calçadão, com linhas orgânicas que levam movimento à composição.</p>
+              <div class="product-bottom">
+                <span class="price">R$ 189,90</span>
+                <button class="interest-button" type="button" data-product="Toalha Copacabana — R$ 189,90">Tenho interesse ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img src="./IMG/imagem.jpg" alt="Toalha de mesa com estampa em tons de verde e cores terrosas" width="896" height="1200" loading="lazy">
+              <span class="product-tag">Coleção 02</span>
+            </div>
+            <div class="product-info">
+              <span class="product-number">02 / BOTÂNICA</span>
+              <h3>Toalha Terraço Jardim</h3>
+              <p>Uma composição de verdes e tons terrosos que celebra as folhagens, a diversidade e a força da natureza tropical.</p>
+              <div class="product-bottom">
+                <span class="price">R$ 210,00</span>
+                <button class="interest-button" type="button" data-product="Toalha Sítio Santo Antônio — R$ 210,00">Tenho interesse ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img src="./IMG/imagem (2).jpg" alt="Toalha de mesa com estampa abstrata de formas sinuosas e cores quentes" width="896" height="1200" loading="lazy">
+              <span class="product-tag">Coleção 03</span>
+            </div>
+            <div class="product-info">
+              <span class="product-number">03 / FORMAS</span>
+              <h3>Toalha Palácio Gustavo Capanema</h3>
+              <p>Formas abstratas e cores acolhedoras criam uma peça expressiva, ideal para dar destaque à mesa posta.</p>
+              <div class="product-bottom">
+                <span class="price">R$ 210,00</span>
+                <button class="interest-button" type="button" data-product="Toalha Formas Sinuosas — R$ 210,00">Tenho interesse ↗</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="sobre">
+      <div class="container about-inner">
+        <div class="about-mark" aria-hidden="true">Marx<br>Mesas<span style="color:#d58a6b">.</span></div>
+        <div>
+          <p class="eyebrow">Nossa inspiração</p>
+          <h2>A natureza também pode fazer parte da sua mesa.</h2>
+          <p>A Marx Mesas nasce do encontro entre design, arte modernista e a exuberância da natureza brasileira. A proposta é levar para a casa estampas cheias de movimento, valorizando o momento de sentar à mesa e estar junto.</p>
+          <p>Inspirada no universo visual de Roberto Burle Marx, a coleção combina formas orgânicas, cores intensas e uma visão artística do cotidiano.</p>
+          <a class="button" href="#colecao">Ver as estampas</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="contato">
+      <div class="container">
+        <p class="eyebrow">Sua mesa, sua expressão</p>
+        <h2>Um detalhe muda todo o ambiente.</h2>
+        <p>Gostou de uma das estampas? Selecione “Tenho interesse” no produto para preparar uma mensagem com o nome e o valor da peça.</p>
+        <a class="button" href="#colecao">Escolher uma toalha</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">Marx <span>Mesas</span></div>
+        <small>Arte e natureza à mesa.</small>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Início</a>
+        <a href="#colecao">Coleção</a>
+        <a href="#sobre">Nossa ideia</a>
+      </div>
+      <p>© <span id="year"></span> Marx Mesas · Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    document.querySelectorAll('[data-product]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const product = button.dataset.product;
+        toast.textContent = `Você selecionou: ${product}. Adicione seu WhatsApp ou Instagram para concluir o pedido.`;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+      });
+    });
+  </script>
+</body>
+</html>
